@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  top: 0;
+  left: 0;
+  font-family: "Roboto-Regular", Arial, Helvetica, sans-serif;
+  color: #393939;
+  background-color: #fff;
+  line-height: 1.5;
+}
+
+/* Global */
+.layout {
+  width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.is-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.container_web {
+  width: 100%;
+  min-height: 100vh;
+}
+.container_web header {
+  width: 100%;
+  border: 1px solid #000;
+  position: fixed;
+}
+.container_web header .header {
+  padding: 20px 0;
+  width: 100%;
+}
+.container_web header .header .layout {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+}
+.container_web header .header .layout .logo a {
+  width: 100%;
+  height: auto;
+}
+.container_web header .header .layout .logo a img {
+  width: 120px;
+}
+.container_web header .header .layout .nav_wrapp {
+  padding: 0 1.5%;
+  -webkit-box-flex: 1;
+  flex: 1;
+  text-align: center;
+  min-width: 40%;
+  max-width: 55%;
+}
+.container_web header .header .layout .nav_wrapp .head_nav {
+  text-align: center;
+}
+.container_web header .header .layout .nav_wrapp .head_nav .item_nav {
+  list-style-type: none;
+  display: inline-block;
+  line-height: 2.8em;
+  font-size: 18px;
+  position: relative;
+  perspective: 500px;
+  vertical-align: middle;
+  position: relative;
+  margin: 0 5px;
+  text-transform: uppercase;
+}
+.container_web header .header .layout .nav_wrapp .head_nav .item_nav a {
+  text-decoration: none;
+  color: #000;
+}
+.container_web header .header .layout .head_right {
+  padding: 10px 0;
+  text-align: right;
+  border: 1px solid #000;
+}
+.container_web header .header .layout .head_right .search {
+  position: relative;
+}
+.container_web header .header .layout .head_right .search input {
+  background: none;
+  font-size: 14px;
+  border-radius: 8px;
+  padding-left: 10px;
+  border: 2px solid #2f904b;
+}
+.container_web header .header .layout .head_right .search input:focus {
+  outline: none;
+  border: 2px solid #2f904b;
+}
+.container_web header .header .layout .head_right .search i {
+  color: #000;
+  font-size: 20px;
+  position: absolute;
+  right: 4px;
+}
+.container_web main {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000;
+}
+
+/*# sourceMappingURL=app.css.map */
