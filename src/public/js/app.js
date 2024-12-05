@@ -13,23 +13,51 @@ btnTabCard.forEach((btn, index) => {
 })
 
 document.addEventListener("DOMContentLoaded", () => {
-    const sliderBanner = document.querySelector(".slider_banner");
-    const slides = document.querySelectorAll(".item_slider");
-    const totalSlides = slides.length;
 
-    let currentIndex = 0;
+    const navbar = document.querySelector(".header_wrapp");
 
-    function moveSlider(index) {
-        // Tính toán vị trí cần dịch chuyển
-        const offset = -index * 100; // Mỗi slide dịch chuyển 100%
-        sliderBanner.style.transform = `translateX(${offset}%)`;
+    function updateNavbarBackground() {
+        const currentPath = window.location.pathname;
+
+        if (currentPath === "/") {
+            navbar.classList.add("on-backgr");
+        } else {
+            navbar.classList.remove("on-backgr");
+        }
     }
 
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides; // Lặp lại từ đầu nếu đến slide cuối
-        moveSlider(currentIndex);
-    }
+    // Gọi hàm khi tải trang
+    updateNavbarBackground();
 
-    // Chuyển slide mỗi 3 giây
-    setInterval(nextSlide, 2000);
+    window.addEventListener("popstate", updateNavbarBackground);
+
+    const items = document.querySelectorAll(".item_aside");
+
+    items.forEach(item => {
+        const icon = item.querySelector(".btn_drop");
+
+        icon.addEventListener("click", function (event) {
+            items.forEach(otherItem => {
+                const otherIcon = otherItem.querySelector('.btn_drop');
+                console.log(otherIcon);
+                if (otherItem !== item) {
+                    if (otherIcon) {
+                        otherIcon.classList.add("bi-chevron-up");
+                        otherIcon.classList.remove("bi-chevron-down");
+                    }
+                    otherItem.classList.remove("click");
+                }
+                
+            });
+            if (item.classList.contains("click")) {
+                icon.classList.add("bi-chevron-up");
+                icon.classList.remove("bi-chevron-down");
+            } else {
+                icon.classList.remove("bi-chevron-up");
+                icon.classList.add("bi-chevron-down");
+            }
+                
+            item.classList.toggle("click");
+        });
+    });
 });
