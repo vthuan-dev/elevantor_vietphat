@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: 0;
 }
 
 body {
@@ -166,6 +167,7 @@ ul, li {
   /* products */
   /* news */
   /* about us*/
+  /* contact */
 }
 .container_web main .slider_banner {
   transition: transform 0.5s ease-in-out;
@@ -629,6 +631,66 @@ ul, li {
   gap: 20px;
   justify-content: space-between;
   margin-top: 20px;
+}
+.container_web main .name_company {
+  font-family: "Poppins,", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #2f904b;
+}
+.container_web main .sub_title {
+  font-family: "Poppins,", sans-serif;
+  font-weight: 600;
+  color: #0a0a0a;
+  font-size: 18px;
+}
+.container_web main .title_form {
+  width: 100%;
+  background: #2f904b;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  padding: 0 20px;
+  font-weight: normal;
+  color: #fff;
+  margin: 0;
+  margin-top: 20px;
+}
+.container_web main .form_contact {
+  width: 100%;
+  background: #fff;
+  height: 390px;
+}
+.container_web main .form_contact ul {
+  width: 100%;
+  padding: 20px 20px 5px;
+}
+.container_web main .form_contact ul li {
+  position: relative;
+  width: 100%;
+  margin: 0 0 14px;
+  display: flex;
+  min-height: auto;
+  line-height: 40px;
+}
+.container_web main .form_contact ul li input {
+  border: 1px solid #eee;
+  border-left: 3px solid #013e5a;
+  height: 39px;
+  padding: 0 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  position: relative;
+  width: 100%;
+}
+.container_web main .form_contact ul li textarea {
+  height: 95px;
+  padding: 10px;
+  resize: none;
+  border: 1px solid #eee;
+  border-left: 3px solid #013e5a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
 }
 .container_web footer {
   width: 100%;
