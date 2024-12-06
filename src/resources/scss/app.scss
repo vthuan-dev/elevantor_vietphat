@@ -90,21 +90,28 @@ ul,li{
                     .head_nav{
                         text-align: center;
                         .item_nav{
-                            font-weight: 500;
+                            padding: 0 10px;
+                            font-weight: 510;
                             list-style-type: none;
-                            display: inline-block;
                             line-height: 2.8em;
                             font-size: 18px;
                             position: relative;
                             perspective: 500px;
-                            vertical-align: middle;
-                            position: relative;
-                            margin: 0 5px;
                             text-transform: uppercase;
                             a{
                                 text-decoration: none;
+                                padding-bottom: 5px;
                                 color: #fff;
+                                border-bottom: 2px solid transparent;
+                                transition: .3s ease-in;
+
                             }
+                        }
+                        .item_nav:hover a{
+                            border-bottom: 2px solid #2f904b;
+                        }
+                        .item_nav.active a{
+                            border-bottom: 2px solid #2f904b;
                         }
                     }
                 }
@@ -162,16 +169,17 @@ ul,li{
         height: 100vh;
         /* home */
         .slider_banner{
-            transition: transform 0.5s ease-in-out;
             width: 100%;
             display: flex;
             flex-wrap: nowrap;
             overflow-x: auto;
+            // scroll-snap-type: x mandatory; 
             .item_slider{
                 flex: 0 0 auto;
                 width: 100%;
                 aspect-ratio: 1600 / 670;
-                position: relative; /* Tỷ lệ khung hình của ảnh */
+                position: relative;
+                // scroll-snap-align: start;
                 img{
                     width: 100%;
                     height: auto;
@@ -215,8 +223,13 @@ ul,li{
                 width: 100%;
                 img{
                     width: 100%;
+                    transition: transform 0.7s ease; /* Hiệu ứng mượt */
+                    transform-origin: center;
                     filter: drop-shadow(1px 1px 15px #2f904b);
                 }
+            }
+            .company_intro_img:hover img{
+                transform: rotateY(180deg);
             }
         }
         .index_product{
@@ -233,10 +246,13 @@ ul,li{
                     color: #fff;
                     text-transform: uppercase;
                     cursor: pointer;
-                    
                 }
                 .tab_item.active{
                     background: #2f904b;
+                }
+                .tab_item:hover{
+                    background: #2f904b;
+                    transition: 0.3s ease;
                 }
             }
             .list_card{
@@ -244,13 +260,41 @@ ul,li{
                     display: none;
                     .arrow_card{
                         .item_card{
-                            gap: 20px;
                             width: calc(100% / 4 - 20px);
-                            img{
+                            .wrapper_img{
+                                position: relative;
                                 width: 100%;
-                                object-fit: cover;
+                                display: inline-block;
+                                overflow: hidden;
+                                img{
+                                    display: inline-block;
+                                    width: 100%;
+                                    object-fit: cover;
+                                }
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: #201f1f42; 
+                                    opacity: 0; 
+                                    transition: opacity 0.4s ease-in;
+                                    z-index: 1;
+                                }
+                            }
+                            .wrapper_img:hover img{
+                                transform: scale(1.2);
+                                transition: 0.4s ease-in;
+                            }
+                            .wrapper_img:hover::before {
+                                opacity: 1; 
                             }
                         }
+                        
+                        
+                        
                     }
                 }
                 .list_card_container.active{
@@ -390,14 +434,7 @@ ul,li{
                                 width: 100%;
                                 object-fit: cover;
                             }
-                            .title_product{
-                                padding: 10px 0 0 0;
-                                text-align: center;
-                                a{
-                                    font-size: 17px;
-                                    color: #393939;
-                                }
-                            }
+                            
                         }
                     }
                     
@@ -851,5 +888,15 @@ ul,li{
     } 
     .current{
         cursor: unset;
+    }
+}
+
+/* name product */
+.title_product{
+    padding: 10px 0 0 0;
+    text-align: center;
+    a{
+        font-size: 17px;
+        color: #393939;
     }
 }

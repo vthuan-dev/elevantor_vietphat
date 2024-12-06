@@ -98,21 +98,27 @@ ul, li {
   text-align: center;
 }
 .container_web header .header .layout .nav_wrapp .head_nav .item_nav {
-  font-weight: 500;
+  padding: 0 10px;
+  font-weight: 510;
   list-style-type: none;
-  display: inline-block;
   line-height: 2.8em;
   font-size: 18px;
   position: relative;
   perspective: 500px;
-  vertical-align: middle;
-  position: relative;
-  margin: 0 5px;
   text-transform: uppercase;
 }
 .container_web header .header .layout .nav_wrapp .head_nav .item_nav a {
   text-decoration: none;
+  padding-bottom: 5px;
   color: #fff;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s ease-in;
+}
+.container_web header .header .layout .nav_wrapp .head_nav .item_nav:hover a {
+  border-bottom: 2px solid #2f904b;
+}
+.container_web header .header .layout .nav_wrapp .head_nav .item_nav.active a {
+  border-bottom: 2px solid #2f904b;
 }
 .container_web header .header .layout .head_right {
   padding: 10px 0;
@@ -170,7 +176,6 @@ ul, li {
   /* contact */
 }
 .container_web main .slider_banner {
-  transition: transform 0.5s ease-in-out;
   width: 100%;
   display: flex;
   flex-wrap: nowrap;
@@ -180,7 +185,7 @@ ul, li {
   flex: 0 0 auto;
   width: 100%;
   aspect-ratio: 1600/670;
-  position: relative; /* Tỷ lệ khung hình của ảnh */
+  position: relative;
 }
 .container_web main .slider_banner .item_slider img {
   width: 100%;
@@ -224,7 +229,12 @@ ul, li {
 }
 .container_web main .introduct .company_intro_img img {
   width: 100%;
+  transition: transform 0.7s ease; /* Hiệu ứng mượt */
+  transform-origin: center;
   filter: drop-shadow(1px 1px 15px #2f904b);
+}
+.container_web main .introduct .company_intro_img:hover img {
+  transform: rotateY(180deg);
 }
 .container_web main .index_product {
   margin-top: 80px;
@@ -246,16 +256,45 @@ ul, li {
 .container_web main .index_product .product_tab .tab_item.active {
   background: #2f904b;
 }
+.container_web main .index_product .product_tab .tab_item:hover {
+  background: #2f904b;
+  transition: 0.3s ease;
+}
 .container_web main .index_product .list_card .list_card_container {
   display: none;
 }
 .container_web main .index_product .list_card .list_card_container .arrow_card .item_card {
-  gap: 20px;
   width: calc(25% - 20px);
 }
-.container_web main .index_product .list_card .list_card_container .arrow_card .item_card img {
+.container_web main .index_product .list_card .list_card_container .arrow_card .item_card .wrapper_img {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+}
+.container_web main .index_product .list_card .list_card_container .arrow_card .item_card .wrapper_img img {
+  display: inline-block;
   width: 100%;
   object-fit: cover;
+}
+.container_web main .index_product .list_card .list_card_container .arrow_card .item_card .wrapper_img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(32, 31, 31, 0.2588235294);
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+  z-index: 1;
+}
+.container_web main .index_product .list_card .list_card_container .arrow_card .item_card .wrapper_img:hover img {
+  transform: scale(1.2);
+  transition: 0.4s ease-in;
+}
+.container_web main .index_product .list_card .list_card_container .arrow_card .item_card .wrapper_img:hover::before {
+  opacity: 1;
 }
 .container_web main .index_product .list_card .list_card_container.active {
   display: block;
@@ -391,14 +430,6 @@ ul, li {
 .container_web main .wrapper_products .list_products .wrapper_list_products ul .item_product img {
   width: 100%;
   object-fit: cover;
-}
-.container_web main .wrapper_products .list_products .wrapper_list_products ul .item_product .title_product {
-  padding: 10px 0 0 0;
-  text-align: center;
-}
-.container_web main .wrapper_products .list_products .wrapper_list_products ul .item_product .title_product a {
-  font-size: 17px;
-  color: #393939;
 }
 .container_web main .wrapper_news {
   margin-top: 45px;
@@ -838,6 +869,16 @@ ul, li {
 }
 .page_bar .current {
   cursor: unset;
+}
+
+/* name product */
+.title_product {
+  padding: 10px 0 0 0;
+  text-align: center;
+}
+.title_product a {
+  font-size: 17px;
+  color: #393939;
 }
 
 /*# sourceMappingURL=app.css.map */
