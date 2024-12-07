@@ -38,28 +38,28 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector('.tab-4').classList.remove('active');
             document.querySelector('.tab-5').classList.remove('active');
         }
-        else if(currentPath === "/products") {
+        else if(currentPath.startsWith("/products")) {
             document.querySelector('.tab-1').classList.remove('active');
             document.querySelector('.tab-2').classList.add('active');
             document.querySelector('.tab-3').classList.remove('active');
             document.querySelector('.tab-4').classList.remove('active');
             document.querySelector('.tab-5').classList.remove('active');
         }
-        else if(currentPath === "/news") {
+        else if(currentPath.startsWith("/products")) {
             document.querySelector('.tab-1').classList.remove('active');
             document.querySelector('.tab-2').classList.remove('active');
             document.querySelector('.tab-3').classList.add('active');
             document.querySelector('.tab-4').classList.remove('active');
             document.querySelector('.tab-5').classList.remove('active');
         }
-        else if(currentPath === "/about-us") {
+        else if(currentPath.startsWith("/about-us")) {
             document.querySelector('.tab-1').classList.remove('active');
             document.querySelector('.tab-2').classList.remove('active');
             document.querySelector('.tab-3').classList.remove('active');
             document.querySelector('.tab-4').classList.add('active');
             document.querySelector('.tab-5').classList.remove('active');
         }
-        else if(currentPath === "/contact") {
+        else if(currentPath.startsWith("/contact")) {
             document.querySelector('.tab-1').classList.remove('active');
             document.querySelector('.tab-2').classList.remove('active');
             document.querySelector('.tab-3').classList.remove('active');
@@ -100,30 +100,47 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const slider = document.querySelector('.slider_banner');
-    const slides = document.querySelectorAll('.item_slider');
-    let currentIndex = 0; // Lưu trữ chỉ số của ảnh hiện tại
-    const totalSlides = slides.length; // Tổng số ảnh
-    const slideWidth = slides[0].offsetWidth; // Chiều rộng của mỗi ảnh
+    async function sliderHome() {
+        try{
+            const slider = document.querySelector('.slider_banner');
+            const slides = document.querySelectorAll('.item_slider');
+            let currentIndex = 0; // Lưu trữ chỉ số của ảnh hiện tại
+            const totalSlides = slides.length; // Tổng số ảnh
+            const slideWidth = slides[0].offsetWidth; // Chiều rộng của mỗi ảnh
 
-    // Hàm chuyển đổi ảnh
-    function changeSlide() {
-        // Tính toán vị trí của ảnh tiếp theo
-        currentIndex = (currentIndex + 1) % totalSlides;
-        const offset = currentIndex * slideWidth;
+            // Hàm chuyển đổi ảnh
+            function changeSlide() {
+                // Tính toán vị trí của ảnh tiếp theo
+                currentIndex = (currentIndex + 1) % totalSlides;
+                const offset = currentIndex * slideWidth;
 
-        // Cuộn đến ảnh tiếp theo
-        slider.scrollTo({
-            left: offset,
-            behavior: 'smooth' // Thêm hiệu ứng cuộn mượt mà
-        });
+                // Cuộn đến ảnh tiếp theo
+                slider.scrollTo({
+                    left: offset,
+                    behavior: 'smooth' // Thêm hiệu ứng cuộn mượt mà
+                });
+            }
+
+            setInterval(changeSlide, 3000);
+
+            slider.scrollTo({ right: 0, behavior: 'smooth' });
+        }
+        catch(error){
+            console.log(`Error: ${error}`)
+        }
     }
+    sliderHome();
 
-    // Tự động chuyển slide mỗi 3 giây
-    setInterval(changeSlide, 3000);
-
-    // Khởi tạo cuộn đến ảnh đầu tiên
-    slider.scrollTo({ right: 0, behavior: 'smooth' });
-
-
+    function changeImageProduct() {
+        const listImage = document.querySelectorAll('.img-js-product');
+        const imgMain = document.querySelector('.img-js-product-main');
+        listImage.forEach((li, index) => {
+            li.addEventListener('click', () => {
+                const img = li.querySelector('img');
+                imgMain.src = img.src;
+                img.style.border = '1px solid #DBDBDB;'
+            })
+        })
+    }
+    changeImageProduct();
 });
