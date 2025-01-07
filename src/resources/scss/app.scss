@@ -50,6 +50,28 @@ ul,li{
     padding: 0;
     list-style-type: none;
 }
+.circle{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.253);
+    cursor: pointer;
+    img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+    i{
+        font-size: 20px;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.719);
+    }
+}
 
 .container_web{
     position: relative;
@@ -126,19 +148,21 @@ ul,li{
                             background: none;
                             font-size: 14px;
                             color: #fff;
-                            padding: 5px 0px 5px 25px;
+                            padding: 5px 0px 5px 35px;
                             border-radius: 8px;
                             border: 1px solid #2f904b;
                         }
                         input:focus {
                             outline: none;
                             border: 1px solid #2f904b;
+                            box-shadow: 0 0 15px rgba(47, 144, 74, 0.829);
                         }
                         i{
                             color: #fff;
                             font-size: 20px;
                             position: absolute;
-                            left: 4px;
+                            left: 10px;
+                            line-height: 1.6;
                         }
                     }
                     .caller{
