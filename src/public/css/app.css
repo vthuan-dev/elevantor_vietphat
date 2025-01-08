@@ -242,7 +242,7 @@ ul, li {
   max-width: 80%;
 }
 .container_web main .introduct .heading_intro .company_intro .text_intro {
-  text-align: left;
+  text-align: justify;
   display: block;
   margin-block-start: 1em;
   margin-block-end: 1em;
