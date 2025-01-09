@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector('.tab-4').classList.remove('active');
             document.querySelector('.tab-5').classList.remove('active');
         }
-        else if(currentPath.startsWith("/products")) {
+        else if(currentPath.startsWith("/news")) {
             document.querySelector('.tab-1').classList.remove('active');
             document.querySelector('.tab-2').classList.remove('active');
             document.querySelector('.tab-3').classList.add('active');
@@ -143,4 +143,25 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
     changeImageProduct();
+});
+
+const imgRight = document.querySelectorAll('.animation-right');
+const imgTop = document.querySelectorAll('.animation-top');
+const fadeIn = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+});
+imgRight.forEach(img => {
+    observer.observe(img);
+});
+imgTop.forEach(img => {
+    observer.observe(img);
+});
+fadeIn.forEach(img => {
+    observer.observe(img);
 });
