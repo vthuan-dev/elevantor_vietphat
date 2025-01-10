@@ -1,19 +1,82 @@
-const tabCard = document.querySelectorAll('.list_card_container');
-const btnTabCard = document.querySelectorAll('.tab_item');
-
-btnTabCard.forEach((btn, index) => {
-    let tab = tabCard[index];
-    btn.addEventListener('click', () => {
-        document.querySelector('.list_card_container.active').classList.remove('active');
-        document.querySelector('.tab_item.active').classList.remove('active')
-
-        btn.classList.add('active')
-        tab.classList.add('active');
-    })
-})
 
 document.addEventListener("DOMContentLoaded", () => {
+    const tabCard = document.querySelectorAll('.list_card_container');
+    const btnTabCard = document.querySelectorAll('.tab_item');
 
+    let indexSate = 0;
+
+    btnTabCard.forEach((btn, index) => {
+        let tab = tabCard[index];
+        btn.addEventListener('click', () => {
+            document.querySelector('.list_card_container.active').classList.remove('active');
+            document.querySelector('.tab_item.active').classList.remove('active')
+
+            btn.classList.add('active')
+            tab.classList.add('active');
+            indexSate = index;
+            getProductForSategory();
+        })
+    })
+    async function getProductForSategory() {
+        const sategoryProduct = await fetch(`http://localhost:4000/products/api/getcop`);
+        const product = await sategoryProduct.json();
+        console.log(product);
+        
+        const copList = [
+            document.querySelector('.cop-list-1'),
+            document.querySelector('.cop-list-2'),
+        ];
+        let copChuck = [];
+        for (let i = 0; i < product.length; i += 4) {
+            copChuck.push(product.slice(i, i + 4));
+        }
+        copChuck.forEach(function (chuck, index) {
+            let htmls = chuck.map(function (product) {
+                    return `
+                    <li class="item_card">
+                        <a href="/products/${product.slug}" class="wrapper_img">
+                            <img class="fade-in" src=${product.thumbnail_main} alt="">
+                            <i class="bi bi-plus"></i>
+                        </a>
+                        <div class="title_product">
+                            <h3>
+                                <a href="/products/${product.slug}">
+                                    ${product.name}
+                                </a>
+                            </h3>
+                        </div>
+                    </li>`;
+                })
+                .join('');
+            if (copList[index]) {
+                copList[index].innerHTML = htmls;
+            }
+            const newImages = document.querySelectorAll('.fade-in');
+            newImages.forEach(img => observer.observe(img));
+        });
+    
+    }
+    getProductForSategory();
+    const imgRight = document.querySelectorAll('.animation-right');
+    const imgTop = document.querySelectorAll('.animation-top');
+    const fadeIn = document.querySelectorAll('.fade-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    });
+    imgRight.forEach(img => {
+        observer.observe(img);
+    });
+    imgTop.forEach(img => {
+        observer.observe(img);
+    });
+    fadeIn.forEach(img => {
+        observer.observe(img);
+    });
     const navbar = document.querySelector(".header_wrapp");
 
     function updateNavbarBackground() {
@@ -143,25 +206,5 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
     changeImageProduct();
-});
-
-const imgRight = document.querySelectorAll('.animation-right');
-const imgTop = document.querySelectorAll('.animation-top');
-const fadeIn = document.querySelectorAll('.fade-in');
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
-    });
-});
-imgRight.forEach(img => {
-    observer.observe(img);
-});
-imgTop.forEach(img => {
-    observer.observe(img);
-});
-fadeIn.forEach(img => {
-    observer.observe(img);
+    
 });
