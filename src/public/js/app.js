@@ -1,9 +1,36 @@
-
 document.addEventListener("DOMContentLoaded", () => {
+    const formEmail = document.querySelectorAll('.form_contact');
+    formEmail.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = form.querySelector('input[name="Name"]').value;
+            const email = form.querySelector('input[name="Email"]').value;
+            const phone = form.querySelector('input[name="Phone"]').value;
+            const message = form.querySelector('textarea[name="Message"]').value;
+
+            const emailBody = `
+                <strong>Name:</strong> ${name} <br>
+                <strong>Email:</strong> ${email} <br>
+                <strong>Phone:</strong> ${phone} <br>
+                <strong>Message:</strong> ${message}
+                Cám ơn quý khách đã liên hệ!
+                `;
+
+            Email.send({
+                Host : "smtp.gmail.com",
+                Username : "huyhung18042002@gmail.com",
+                Password : "password",
+                To : "huyhung18042002@gmail.com",
+                From : email,
+                Subject : "Mua linh kiện thang máy từ phukienthangmay.com",
+                Body : emailBody
+            }).then(
+                message => alert(message)
+            );
+        });
+    })
     const tabCard = document.querySelectorAll('.list_card_container');
     const btnTabCard = document.querySelectorAll('.tab_item');
-
-    let indexSate = 0;
 
     btnTabCard.forEach((btn, index) => {
         let tab = tabCard[index];
