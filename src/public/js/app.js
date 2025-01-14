@@ -1,31 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const formEmail = document.querySelectorAll('.form_contact');
-    (function() {
-        emailjs.init();
-      })();
-    formEmail.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = form.querySelector('input[name="Name"]').value;
-            const email = form.querySelector('input[name="Email"]').value;
-            const phone = form.querySelector('input[name="Phone"]').value;
-            const message = form.querySelector('textarea[name="Message"]').value;
-
-            const emailBody = `
-                <strong>Name:</strong> ${name} <br>
-                <strong>Email:</strong> ${email} <br>
-                <strong>Phone:</strong> ${phone} <br>
-                <strong>Message:</strong> ${message}
-                Cám ơn quý khách đã liên hệ!
-                `;
-            emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
-                .then(function() {
-                  alert("Email sent successfully!");
-                }, function(error) {
-                  alert("Failed to send email: " + error);
-                });
-        });
-    })
+    
     const tabCard = document.querySelectorAll('.list_card_container');
     const btnTabCard = document.querySelectorAll('.tab_item');
 
@@ -164,7 +138,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabCard = document.querySelectorAll('.list_card_container');
     const btnTabCard = document.querySelectorAll('.tab_item');
 
+    const imgRight = document.querySelectorAll('.animation-right');
+    const imgTop = document.querySelectorAll('.animation-top');
+    const fadeIn = document.querySelectorAll('.fade-in');
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    });
+    imgRight.forEach(img => {
+        observer.observe(img);
+    });
+    imgTop.forEach(img => {
+        observer.observe(img);
+    });
+    fadeIn.forEach(img => {
+        observer.observe(img);
+    });
     btnTabCard.forEach((btn, index) => {
         let tab = tabCard[index];
         btn.addEventListener('click', () => {
@@ -177,5 +170,23 @@ document.addEventListener("DOMContentLoaded", () => {
             getProductForSategory();
         })
     })
-    
+    const formEmail = document.querySelectorAll('.form_contact');
+    (function() {
+        if (!window.env || !window.env.YOUR_USER_ID) {
+          console.error("Config not loaded properly.");
+          return;
+        }
+        emailjs.init(window.env.YOUR_USER_ID);
+      })();
+    formEmail.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            emailjs.sendForm(window.env.YOUR_SERVICE_ID, window.env.YOUR_TEMPLATE_ID , this)
+                .then(function() {
+                  alert("Email sent successfully!");
+                }, function(error) {
+                  alert("Failed to send email: " + error);
+                });
+        });
+    })
 }});
