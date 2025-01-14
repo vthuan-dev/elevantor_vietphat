@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const formEmail = document.querySelectorAll('.form_contact');
+    (function() {
+        emailjs.init();
+      })();
     formEmail.forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -15,18 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <strong>Message:</strong> ${message}
                 Cám ơn quý khách đã liên hệ!
                 `;
-
-            Email.send({
-                Host : "smtp.gmail.com",
-                Username : "huyhung18042002@gmail.com",
-                Password : "password",
-                To : "huyhung18042002@gmail.com",
-                From : email,
-                Subject : "Mua linh kiện thang máy từ phukienthangmay.com",
-                Body : emailBody
-            }).then(
-                message => alert(message)
-            );
+            emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+                .then(function() {
+                  alert("Email sent successfully!");
+                }, function(error) {
+                  alert("Failed to send email: " + error);
+                });
         });
     })
     const tabCard = document.querySelectorAll('.list_card_container');
