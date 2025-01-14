@@ -290,12 +290,15 @@ ul, li {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
 }
+.container_web header .header .layout .logo {
+  width: 90px;
+}
 .container_web header .header .layout .logo a {
   width: 100%;
   height: auto;
 }
 .container_web header .header .layout .logo a img {
-  width: 120px;
+  width: 100%;
 }
 .container_web header .header .layout .nav_wrapp {
   padding: 0 1.5%;

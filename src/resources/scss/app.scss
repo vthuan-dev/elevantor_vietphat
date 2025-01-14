@@ -277,11 +277,12 @@ ul,li{
                 -webkit-box-orient: horizontal;
                 -webkit-box-direction: normal;
                 .logo{
+                    width: 90px;
                     a{
                         width: 100%;
                         height: auto;
                         img{
-                            width: 120px;
+                            width: 100%;
                         }
                     }
                 }
