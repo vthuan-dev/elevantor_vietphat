@@ -266,6 +266,69 @@ ul, li {
   color: rgba(255, 255, 255, 0.719);
 }
 
+.menu_nav_bar {
+  display: none;
+}
+.menu_nav_bar i {
+  font-size: 35px;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.search {
+  position: relative;
+}
+.search input {
+  background: none;
+  font-size: 14px;
+  color: #fff;
+  padding: 5px 0px 5px 45px;
+  border-radius: 8px;
+  border: 1px solid var(--color-main);
+}
+.search input:focus {
+  outline: none;
+  border: 1px solid var(--color-main);
+  box-shadow: 0 0 15px rgba(47, 144, 74, 0.829);
+}
+.search i {
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  left: 10px;
+  line-height: 1.6;
+}
+
+.search_mobie {
+  position: absolute;
+  background-color: #000;
+  z-index: 100000000;
+  padding: 0 10%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+  transition: 0.4s linear;
+}
+.search_mobie input {
+  display: block !important;
+  width: 100%;
+}
+.search_mobie .bi-search {
+  left: 11% !important;
+}
+.search_mobie .bi-x {
+  position: absolute;
+  left: calc(100% - 60px) !important;
+  top: 30px;
+  font-size: 40px;
+}
+
+.search_mobie.active {
+  transform: translateY(0);
+}
+
 .container_web {
   position: relative;
   width: 100%;
@@ -287,6 +350,7 @@ ul, li {
   width: 100%;
 }
 .container_web header .header .layout {
+  position: unset;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
 }
@@ -332,31 +396,9 @@ ul, li {
   background-color: var(--color-main);
 }
 .container_web header .header .layout .head_right {
+  position: relative;
   padding: 10px 0;
   text-align: right;
-}
-.container_web header .header .layout .head_right .search {
-  position: relative;
-}
-.container_web header .header .layout .head_right .search input {
-  background: none;
-  font-size: 14px;
-  color: #fff;
-  padding: 5px 0px 5px 35px;
-  border-radius: 8px;
-  border: 1px solid var(--color-main);
-}
-.container_web header .header .layout .head_right .search input:focus {
-  outline: none;
-  border: 1px solid var(--color-main);
-  box-shadow: 0 0 15px rgba(47, 144, 74, 0.829);
-}
-.container_web header .header .layout .head_right .search i {
-  color: #fff;
-  font-size: 20px;
-  position: absolute;
-  left: 10px;
-  line-height: 1.6;
 }
 .container_web header .header .layout .head_right .caller {
   padding: 5px 50px 5px 10px;
@@ -438,6 +480,11 @@ ul, li {
   margin-inline-end: 0px;
   unicode-bidi: isolate;
   line-height: 2.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .container_web main .introduct .wrapper_intro .company_intro_img {
   width: 45%;
@@ -458,7 +505,6 @@ ul, li {
 }
 .container_web main .index_product .product_tab .tab_item {
   width: calc(25% - 20px);
-  gap: 20px;
   background: #000;
   padding: 10px 0;
   font-size: 18px;
@@ -509,11 +555,21 @@ ul, li {
   font-size: 20px;
   color: var(--color-main);
   text-decoration: underline;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .container_web main .index_news .item_inner .text_inner p {
   margin-top: 25px;
   font-size: 16px;
   line-height: 2;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .container_web main .index_news .item_inner .img_inner {
   width: 50%;
@@ -1281,8 +1337,17 @@ ul, li {
 .title_product a {
   font-size: 17px;
   color: #393939;
+  display: -webkit-box; /* Sử dụng box layout của Webkit */
+  -webkit-line-clamp: 1; /* Số dòng tối đa */
+  -webkit-box-orient: vertical; /* Hướng box theo chiều dọc */
+  overflow: hidden; /* Ẩn phần văn bản thừa */
+  text-overflow: ellipsis; /* Thêm dấu "..." nếu bị cắt */
+  white-space: normal;
 }
 
+.arrow_card {
+  gap: 20px;
+}
 .arrow_card .item_card {
   width: calc(25% - 20px);
 }
@@ -1290,6 +1355,7 @@ ul, li {
   position: relative;
   width: 100%;
   display: inline-block;
+  box-sizing: border-box;
   overflow: hidden;
 }
 .arrow_card .item_card .wrapper_img i {
@@ -1300,11 +1366,13 @@ ul, li {
   font-size: 40px;
   color: white;
   display: none;
+  box-sizing: border-box;
 }
 .arrow_card .item_card .wrapper_img img {
   display: inline-block;
   width: 100%;
   object-fit: cover;
+  box-sizing: border-box;
 }
 .arrow_card .item_card .wrapper_img::before {
   content: "";
@@ -1328,6 +1396,10 @@ ul, li {
 }
 .arrow_card .item_card .wrapper_img:hover::before {
   opacity: 1;
+}
+
+.img_artle {
+  display: none;
 }
 
 /*# sourceMappingURL=app.css.map */

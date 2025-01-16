@@ -313,4 +313,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
     })
+
+    const iconSearch = document.querySelector('.btn_search');
+    const searchMobie = document.querySelector('.search_mobie');
+    const btnClose = document.querySelector('.btn-close-search');
+    const screenWidthQuery = window.matchMedia('(max-width: 1228px)');
+    iconSearch.addEventListener('click', () => {
+        if(screenWidthQuery.matches){
+            searchMobie.classList.add('active');
+        }
+        isDisplay = !isDisplay;
+    })
+    if(btnClose){
+        btnClose.addEventListener('click', () => {
+            searchMobie.classList.remove('active');
+        })
+    }
 });

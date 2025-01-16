@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "beautifull": "lint-staged",
     "watch": "sass --watch src/resources/scss/app.scss src/public/css/app.css",
+    "watch1": "sass --watch src/resources/scss/reponsive.scss src/public/css/reponsive.css",
     "start": "nodemon --inspect src/app.js"
   },
   "repository": {
