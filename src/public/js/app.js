@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.add('active')
             tab.classList.add('active');
             indexSate = index;
-            })
+        })
     })
     const navbar = document.querySelector(".header_wrapp");
 
@@ -328,5 +328,138 @@ document.addEventListener("DOMContentLoaded", () => {
         btnClose.addEventListener('click', () => {
             searchMobie.classList.remove('active');
         })
+    }
+
+    const model = document.querySelector('.model');
+    const closeNav = document.querySelector('.close_mobie_bar');
+
+    const menuBtn = document.querySelector('.menu_nav_bar');
+    menuBtn.addEventListener('click', () => {
+        model.classList.add('active');
+    })
+    closeNav.addEventListener('click', () => {
+        model.classList.remove('active');
+    })
+    const itemsPage = 12;
+    let pageCurrent = 1;
+
+    async function fetchProduct(page, itemsPage) {
+        try{
+            const response = await fetch(`http://localhost:4000/products/api/getproductsfe/?page=${page}&limit=${itemsPage}`);
+            if(!response.ok){
+                throw new Error('Không thể lấy dữ liệu từ server');
+            }
+            const data = await response.json();
+            return data;
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    async function displayProduct(page){
+        const sategoryProduct = await fetch(`http://localhost:4000/products/api/getproductsfe/?page=${page}&limit=${itemsPage}`);
+        const {product, totalItem} = await sategoryProduct.json();
+        const productList = [
+            document.querySelector('.arrow_card_1'),
+            document.querySelector('.arrow_card_2'),
+            document.querySelector('.arrow_card_3'),
+        ];
+        let productChuck = [];
+        for (let i = 0; i < product.length; i += 4) {
+            productChuck.push(product.slice(i, i + 4));
+        }
+        
+        productChuck.forEach(function (chuck, index) {
+            let htmls = chuck.map(function (product) {
+                    return `<li class="item_card">
+                    <a href="/products/${product.slug}" class="wrapper_img">
+                        <img src="${product.thumbnail_main}" alt="">
+                    </a>
+                    <div class="title_product">
+                        <h3>
+                            <a href="#">
+                                ${product.name}
+                            </a>
+                        </h3>
+                    </div>
+                </li>`;
+                })
+                .join('');
+            if (productList[index]) {
+                productList[index].innerHTML = htmls;
+            }
+            const newImages = document.querySelectorAll('.fade-in');
+            newImages.forEach(img => observer.observe(img));
+        });
+        displayPagination(totalItem, itemsPage);
+    }
+
+    function displayPagination(totalItem, itemsPage) {
+        const pageBar = document.querySelector('.page_bar');
+        const totalPage = Math.ceil(totalItem / itemsPage);
+
+        pageBar.innerHTML = `<button class="next previous"> <i class="bi bi-chevron-double-left"></i></button>
+                <button class="next previous"> <i class="bi bi-chevron-left"></i> Previous</button>`;
+        for(let i = 1; i <= totalPage; i++){
+            const button = document.createElement("button");
+            button.className = `number_page ${i === pageCurrent ? "active" : ""}`;
+            button.textContent = i;
+            button.addEventListener("click", async () => {
+                pageCurrent = i;
+                const { product, totalItem } = await fetchProduct(pageCurrent, itemsPage);
+                displayProduct(pageCurrent);
+                displayPagination(totalItem, itemsPage); 
+            });
+            pageBar.appendChild(button);
+        }
+        const nextButton = document.createElement("button");
+        nextButton.className = "next";
+        nextButton.innerHTML = `Next <i class="bi bi-chevron-right"></i>`;
+        nextButton.addEventListener("click", () => {
+            pageCurrent = Math.min(pageCurrent + 1, totalPage); // Điều chỉnh pageCurrent
+            const { product, totalItem } = fetchProduct(pageCurrent, itemsPage);
+            displayProduct(pageCurrent);
+            displayPagination(totalItem, itemsPage);
+        });
+        pageBar.appendChild(nextButton); // Thêm nút next vào pageBar
+
+        const nextAllButton = document.createElement("button");
+        nextAllButton.className = "next_all";
+        nextAllButton.innerHTML = `<i class="bi bi-chevron-double-right"></i>`;
+        pageBar.appendChild(nextAllButton); // Thêm nút next_all vào pageBar
+
+        const currentButton = document.createElement("button");
+        currentButton.className = "current";
+        currentButton.textContent = `Page ${pageCurrent} / ${totalPage}`;
+        pageBar.appendChild(currentButton); // Thêm nút current vào pageBar
+        const btnPrevious = document.querySelectorAll('.previous');
+        if(pageCurrent !== 1){
+            btnPrevious.forEach(btn => {
+                btn.style.display = 'block';
+                btn.addEventListener('click', () => {
+                    pageCurrent = Math.min(pageCurrent - 1, totalPage); // Điều chỉnh pageCurrent
+                    const { product, totalItem } = fetchProduct(pageCurrent, itemsPage);
+                    displayProduct(pageCurrent);
+                    displayPagination(totalItem, itemsPage);
+                })
+            })
+        }else{
+            btnPrevious.forEach(btn => {
+                btn.style.display = 'none';
+            })
+        }
+    }
+    displayProduct(pageCurrent);
+
+    async function getDeatail(){
+        const slug = window.location.pathname.split('/').pop();
+        const detailProduct = await fetch(`http://localhost:4000/products/api/getdetailproduct/${slug}`);
+
+        const product = await detailProduct.json();
+
+        const html = `
+            
+        `;
     }
 });

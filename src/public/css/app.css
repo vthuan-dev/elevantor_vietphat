@@ -243,6 +243,62 @@ ul, li {
 }
 
 /* END ANIMATION */
+.model {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(83, 83, 83, 0.377);
+  z-index: 3;
+  display: flex;
+  transform: translateX(-100%);
+  transition: 0.3s linear;
+}
+.model .container_mobie {
+  width: 70%;
+  max-width: 70%;
+  height: 100%;
+  background: #fff;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+.model .container_mobie ul {
+  width: 100%;
+}
+.model .container_mobie ul li {
+  padding: 10px 0;
+  width: 100%;
+  border-bottom: 1px solid #f2f2f2;
+}
+.model .container_mobie ul li a {
+  text-transform: uppercase;
+  color: #0a0a0a;
+  font-weight: 500;
+  font-size: 17px;
+}
+.model .container_mobie ul li a i {
+  font-size: 20px;
+  margin-right: 8px;
+}
+.model .container_mobie ul li li:hover {
+  background: rgba(124, 123, 123, 0.3568627451);
+  transition: 0.4s linear;
+}
+.model .close_mobie_bar {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  margin-left: 20px;
+}
+.model .close_mobie_bar i {
+  font-size: 30px;
+}
+
+.model.active {
+  transform: translateX(0);
+}
+
 .circle {
   width: 40px;
   height: 40px;
@@ -337,10 +393,11 @@ ul, li {
 .container_web .on-backgr {
   background: none;
   position: absolute;
+  z-index: 2;
 }
 .container_web header {
   width: 100%;
-  z-index: 3;
+  z-index: 2;
   top: 0;
   background: #000;
   left: 0;
@@ -424,6 +481,7 @@ ul, li {
   width: 100%;
   z-index: 1;
   height: 100vh;
+  position: relative;
   /* home */
   /* news */
   /* about us*/
@@ -835,20 +893,6 @@ ul, li {
   border: 1px solid var(--color-main);
   margin: 20px 0;
 }
-.container_web main .wrapper_about .environment_list {
-  width: 100%;
-  display: flex;
-  gap: 30px;
-  justify-content: space-between;
-  align-items: center;
-}
-.container_web main .wrapper_about .environment_list .item_environment {
-  width: calc(33.3333333333% - 20px);
-}
-.container_web main .wrapper_about .environment_list .item_environment img {
-  width: 100%;
-  object-fit: cover;
-}
 .container_web main .btn-contact-us {
   width: 100%;
 }
@@ -908,13 +952,6 @@ ul, li {
   overflow: hidden; /* Ẩn phần văn bản thừa */
   text-overflow: ellipsis; /* Thêm dấu "..." nếu bị cắt */
   white-space: normal;
-}
-.container_web main .content_container .wrapper .content .environment_list {
-  width: 100%;
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-  margin-top: 20px;
 }
 .container_web main .name_company {
   font-family: "Poppins,", sans-serif;
@@ -1009,6 +1046,7 @@ ul, li {
   width: 100%;
 }
 .container_web main .sub_text p {
+  text-align: justify;
   line-height: 1.5;
   margin: 0;
   padding: 8px 0;
@@ -1400,6 +1438,20 @@ ul, li {
 
 .img_artle {
   display: none;
+}
+
+.environment_list {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+.environment_list .item_environment img {
+  width: 100%;
+  object-fit: cover;
 }
 
 /*# sourceMappingURL=app.css.map */
