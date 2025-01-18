@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     starts();
     async function getProductForCop() {
-        const sategoryProduct = await fetch(`http://localhost:4000/products/api/getcop`);
+        const sategoryProduct = await fetch(`${window.env.SERVER}/products/api/getcop`);
         const product = await sategoryProduct.json();
         
         const copList = [
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     }
     async function getProductForDien() {
-        const sategoryProduct = await fetch(`http://localhost:4000/products/api/getdien`);
+        const sategoryProduct = await fetch(`${window.env.SERVER}/products/api/getdien`);
         const product = await sategoryProduct.json();
         
         const dienList = [
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     }
     async function getProductForInox() {
-        const sategoryProduct = await fetch(`http://localhost:4000/products/api/getinox`);
+        const sategoryProduct = await fetch(`${window.env.SERVER}/products/api/getinox`);
         const product = await sategoryProduct.json();
         const inoxList = [
             document.querySelector('.inox-list-1'),
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchProduct(page, itemsPage) {
         try{
-            const response = await fetch(`http://localhost:4000/products/api/getproductsfe/?page=${page}&limit=${itemsPage}`);
+            const response = await fetch(`${window.env.SERVER}/products/api/getproductsfe/?page=${page}&limit=${itemsPage}`);
             if(!response.ok){
                 throw new Error('Không thể lấy dữ liệu từ server');
             }
@@ -358,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function displayProduct(page){
-        const sategoryProduct = await fetch(`http://localhost:4000/products/api/getproductsfe/?page=${page}&limit=${itemsPage}`);
+        const sategoryProduct = await fetch(`${window.env.SERVER}/products/api/getproductsfe/?page=${page}&limit=${itemsPage}`);
         const {product, totalItem} = await sategoryProduct.json();
         const productList = [
             document.querySelector('.arrow_card_1'),
@@ -454,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function getDeatail(){
         const slug = window.location.pathname.split('/').pop();
-        const detailProduct = await fetch(`http://localhost:4000/products/api/getdetailproduct/${slug}`);
+        const detailProduct = await fetch(`${window.env.SERVER}/products/api/getdetailproduct/${slug}`);
 
         const product = await detailProduct.json();
 
@@ -482,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     getDeatail();
     async function getArticle() {
-        const response = await fetch('http://localhost:4000/articles/getall');
+        const response = await fetch('${window.env.SERVER}/articles/getall');
         const articles = await response.json();
 
         const html = articles.map(article => {
@@ -509,7 +509,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function getDetailArticle(){
         const slug = window.location.pathname.split('/').pop();
-        const response = await fetch(`http://localhost:4000/articles/getdetail/${slug}`);
+        const response = await fetch(`${window.env.SERVER}/articles/getdetail/${slug}`);
 
         const article = await response.json();
         document.querySelector('.subject_article_detail').innerHTML = article.subject;
