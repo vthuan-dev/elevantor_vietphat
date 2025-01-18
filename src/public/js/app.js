@@ -481,4 +481,43 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('.number_stock').innerHTML = `Số lượng tồn kho: ${product.stock}`;
     }
     getDeatail();
+    async function getArticle() {
+        const response = await fetch('http://localhost:4000/articles/getall');
+        const articles = await response.json();
+
+        const html = articles.map(article => {
+            return `
+                <li class="item_news is-between">
+                    <a href="#" class="link_news">
+                        <img src="${article.thumbnail}" alt="">
+                    </a>
+                    <div class="content_news">
+                        <a href="/news/${article.slug}" class="heading_title">
+                            ${article.subject}
+                        </a>
+                        <time>by ${article.author} on ${article.formatedDate}</time>
+                        <p>
+                            ${article.content}
+                        </p>
+                        <a href="/news/${article.slug}" class="read_more">read more</a>
+                    </div>
+                </li>`;
+        })
+        document.querySelector('.list_news').innerHTML = html.join('');
+    }
+    getArticle();
+
+    async function getDetailArticle(){
+        const slug = window.location.pathname.split('/').pop();
+        const response = await fetch(`http://localhost:4000/articles/getdetail/${slug}`);
+
+        const article = await response.json();
+        document.querySelector('.subject_article_detail').innerHTML = article.subject;
+        document.querySelector('.article_thumbnail_1').innerHTML = `<img src="${article.thumbnail}" alt="">`;
+        formatContent = article.content.replace(/\n/g, '<br>');
+        document.querySelector('.detail_content_new').innerHTML = formatContent;
+        document.querySelector('.time_news_detail').innerHTML = `Cập nhật lúc: ${article.formatedDate} <br> Người đăng: ${article.author}`;
+
+    }
+    getDetailArticle();
 });

@@ -27,6 +27,9 @@
     "fs": "^0.0.1-security"
   },
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "nodemon": "^3.1.7",

@@ -11,6 +11,7 @@
     .nav_wrapp{
         max-width: 58% !important;
     }
+    
 }
 
 @media screen and (max-width: 1490px){
@@ -36,7 +37,25 @@
             height: 250px !important;
         }
     }
-    
+    .wrapper_about{
+        .layout{
+            display: block;
+            .line{
+                margin: 5px 0 !important;
+            }
+            .title_about{
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .wrapp_image_about{
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .content{
+                margin: 5px 0 0 0 !important;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 1240px){
@@ -54,6 +73,19 @@
 }
 
 @media screen and (max-width: 1228px){
+    .wrapper_about{
+        .quality_group{
+            margin-top: 5px !important;
+            flex-direction: column;
+            .item_quality{
+                width: 100%;
+                justify-content: start !important;
+            }
+            i{
+                font-size: 20px !important;
+            }
+        }
+    }
     .search{
         input{
             display: none;
@@ -194,25 +226,7 @@
     .list_products{
         width: 100% !important;
     }
-    .wrapper_about{
-        .layout{
-            display: block;
-            .line{
-                margin: 5px 0 !important;
-            }
-            .title_about{
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-            .wrapp_image_about{
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-            .content{
-                margin: 5px 0 0 0 !important;
-            }
-        }
-    }
+    
     .content_container{
         .wrapper{
             padding-top: 30px !important;
@@ -264,19 +278,7 @@
     .logo{
         width: 60px !important;
     }
-    .wrapper_about{
-        .quality_group{
-            margin-top: 5px !important;
-            flex-direction: column;
-            .item_quality{
-                width: 100%;
-                justify-content: start !important;
-            }
-            i{
-                font-size: 20px !important;
-            }
-        }
-    }
+    
     .on-backgr{
         background: black !important;
         position: fixed !important;

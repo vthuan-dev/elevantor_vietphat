@@ -838,8 +838,7 @@ ul,li{
                         }
                     }
                     .content{
-                        margin: 15px 0 0 0;
-                        padding: 8px 0;
+                        margin: 15px 0 10px 0;
                         font-size: 16px;
                         line-height: 1.8;
                         display: -webkit-box; /* Sử dụng box layout của Webkit */
@@ -1463,9 +1462,10 @@ ul,li{
     display: flex;
         align-items: center;
     .item_environment{
+        width: 25%;
         img{
             width: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
     }
 }
