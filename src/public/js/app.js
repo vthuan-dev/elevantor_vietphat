@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
     }
-    changeImageProduct();
+    
     const formEmail = document.querySelectorAll('.form_contact');
     (function() {
         if (!window.env || !window.env.YOUR_USER_ID) {
@@ -458,8 +458,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const product = await detailProduct.json();
 
-        const html = `
-            
-        `;
+        const html = `<img class="img-js-product-main" src="${product.thumbnail_main}" alt="">`;
+        const thumbnailMain = document.querySelector('.wrapper_img_product');
+        thumbnailMain.innerHTML = html;
+
+        const listThumbnail = `<li class="img-js-product" ><img  src="${product.thumbnail_main}" alt=""></li>
+                <li class="img-js-product" ><img  src="${product.thumbnail_1}" alt=""></li>
+                <li class="img-js-product" ><img  src="${product.thumbnail_2}" alt=""></li>
+                <li class="img-js-product" ><img  src="${product.thumbnail_3}" alt=""></li>`;
+        document.querySelector('.wrapper_list_img_product').innerHTML = listThumbnail;
+        changeImageProduct();
+
+        document.querySelector('.name_product').innerHTML = product.name;
+        document.querySelector('.sub_heading').innerHTML = product.description;
+
+        const iamgeDisplay = `<img src="${product.thumbnail_main}" alt="">
+                <img src="${product.thumbnail_2}" alt="">
+                <img src="${product.thumbnail_3}" alt="">`;
+        document.querySelector('.list_img_detail').innerHTML = iamgeDisplay;
+
+        document.querySelector('.description_product').innerHTML = product.description;
+        document.querySelector('.number_stock').innerHTML = `Số lượng tồn kho: ${product.stock}`;
     }
+    getDeatail();
 });
